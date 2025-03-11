@@ -148,6 +148,8 @@ jobs:
             cd /volk
             cd build
             cmake -DCMAKE_CXX_FLAGS="-Werror" -DBUILD_EXECUTABLE=ON ${{ matrix.cmakeargs }} ..
+            ulimit -n 4096
+            ulimit -Hn 8192
             echo "Build with $(nproc) thread(s)"
             make -j$(nproc)
             if [ -f ./cpu_features/list_cpu_features ]; then
